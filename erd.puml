@@ -1,0 +1,83 @@
+@startuml promotions-db
+
+entity "users" {
+  + id : INT [PK]
+  + name : VARCHAR(255)
+  + email : VARCHAR(255)
+  + password : VARCHAR(255)
+  + role : ENUM('admin', 'customer')
+  + address : TEXT
+  + city_id : INT [FK -> cities.id]
+  + created_at : TIMESTAMP
+  + updated_at : TIMESTAMP
+  + deleted_at : TIMESTAMP
+}
+
+entity "cities" {
+  + id : INT [PK]
+  + name : VARCHAR(255)
+}
+
+entity "menus" {
+  + id : INT [PK]
+  + name : VARCHAR(255)
+  + description : TEXT
+  + price : DECIMAL(15, 2)
+  + created_at : TIMESTAMP
+  + updated_at : TIMESTAMP
+  + deleted_at : TIMESTAMP
+}
+
+entity "promotions" {
+  + id : INT [PK]
+  + name : VARCHAR(255)
+  + code : VARCHAR(50)
+  + description : TEXT
+  + type : ENUM('percentage', 'fixed_cut')
+  + target_user : ENUM('all', 'new', 'loyal', 'specific_city')
+  + discount_amount : DECIMAL(15, 2)
+  + max_discount_amount : DECIMAL(15, 2)
+  + min_order_amount : DECIMAL(15, 2)
+  + start_date : DATE
+  + end_date : DATE
+  + max_redemptions : INT
+  + max_redemptions_per_user : INT
+  + created_at : TIMESTAMP
+  + updated_at : TIMESTAMP
+  + deleted_at : TIMESTAMP
+}
+
+entity "promotion_cities" {
+  + promotion_id : INT [FK -> promotions.id]
+  + city_id : INT [FK -> cities.id]
+}
+
+entity "orders" {
+  + id : INT [PK]
+  + user_id : INT [FK -> users.id]
+  + order_amount : DECIMAL(15, 2)
+  + promotion_id : INT [FK -> promotions.id]
+  + promotion_amount : DECIMAL(15, 2)
+  + total_amount : DECIMAL(15, 2)
+  + status : ENUM('draft', 'pending_payment', 'processing', 'completed', 'cancelled')
+  + created_at : TIMESTAMP
+  + updated_at : TIMESTAMP
+  + deleted_at : TIMESTAMP
+}
+
+entity "order_items" {
+  + order_id : INT [FK -> orders.id]
+  + menu_id : INT [FK -> menus.id]
+  + quantity : INT
+  + total_amount : DECIMAL(15, 2)
+}
+
+users }o--|| cities
+users ||--o{ orders
+promotions ||--o{ promotion_cities
+cities ||--o{ promotion_cities
+orders ||--|{ order_items
+order_items }o--|| menus
+orders }o--o| promotions
+
+@enduml

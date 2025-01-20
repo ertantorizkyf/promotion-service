@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "name": "Special 3k Promo",
+    "code": "SPECIAL3K",
+    "description": "Lorem ipsum",
+    "type": "fixed_cut",
+    "target_user": "all",
+    "discount_amount": 3000,
+    "max_discount_amount": null,
+    "min_order_amount": 5000,
+    "start_date": "2025-01-01",
+    "end_date": "2025-12-01",
+    "max_redemptions": 10,
+    "max_redemptions_per_user": 1,
+    "created_at": "2025-01-01 01:01:00",
+    "updated_at": "2025-01-01 01:01:00",
+    "deleted_at": null
+  },
+  {
+    "id": 2,
+    "name": "All Day Deals",
+    "code": "ALLDAY",
+    "description": "Lorem ipsum",
+    "type": "percentage",
+    "target_user": "all",
+    "discount_amount": 10,
+    "max_discount_amount": 5000,
+    "min_order_amount": 5000,
+    "start_date": "2025-01-01",
+    "end_date": "2025-12-01",
+    "max_redemptions": 10,
+    "max_redemptions_per_user": 1,
+    "created_at": "2025-01-01 01:01:00",
+    "updated_at": "2025-01-01 01:01:00",
+    "deleted_at": null
+  }
+]

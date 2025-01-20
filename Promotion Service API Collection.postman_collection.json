@@ -1,0 +1,2417 @@
+{
+	"info": {
+		"_postman_id": "bcfa5075-e0a6-4108-a29c-a123c606cff0",
+		"name": "Promotion Service API Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10363173"
+	},
+	"item": [
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "Auth",
+					"item": [
+						{
+							"name": "Register",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"Test\",\r\n  \"email\": \"test@mail.com\",\r\n  \"password\": \"test1234\",\r\n  \"address\": \"Tentunya di Jakarta, anak kota nih\",\r\n  \"city_id\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/users/register",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users",
+										"register"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 | Success Response",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"name\": \"Test\",\r\n  \"email\": \"test@mail.com\",\r\n  \"password\": \"test1234\",\r\n  \"address\": \"Tentunya di Jakarta, anak kota nih\",\r\n  \"city_id\": 1\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/users/register",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"users",
+												"register"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"success\": true,\n  \"message\": \"Successfully registered\",\n  \"data\": null\n}"
+								},
+								{
+									"name": "400 | Invalid Payload Response",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"name\": \"Test\",\r\n  \"email\": \"test@mail.com\",\r\n  \"password\": \"test1234\",\r\n  \"address\": \"Tentunya di Jakarta, anak kota nih\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/users/register",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"users",
+												"register"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"success\": true,\n  \"message\": \"Successfully registered\",\n  \"data\": null\n}"
+								}
+							]
+						},
+						{
+							"name": "Login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseBody = pm.response.json();\r",
+											"pm.environment.set(\"customer_token\", responseBody.data);\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"email\": \"customer@mail.com\",\r\n  \"password\": \"customer123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/users/login",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users",
+										"login"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 | Success Response",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"email\": \"customer@mail.com\",\r\n  \"password\": \"customer123\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/users/login",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"users",
+												"login"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "218"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"da-OO05TjSkDROfeetqR2uQFSrXzzo\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 20 Jan 2025 03:11:32 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"success\": true,\n  \"message\": \"Successfully logged in\",\n  \"data\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImN1c3RvbWVyIiwiaWF0IjoxNzM3MzQ2NTQxLCJleHAiOjE3Mzc0MzI5NDF9.4aqYLW7Hw6Qdx-NAAFRoWRoViq4HIlbyapt3S2IBF58\"\n}"
+								},
+								{
+									"name": "400 | Invalid Credential",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"email\": \"customer@mail.com\",\r\n  \"password\": \"Customer123\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/users/login",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"users",
+												"login"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "62"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"3e-fYKEWq4/0Rlu2kmJmgRoZPQCsRk\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 20 Jan 2025 03:13:46 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": false,\n    \"message\": \"INVALID CREDENTIALS!\",\n    \"data\": null\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Menus",
+					"item": [
+						{
+							"name": "Get Menu List",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{customer_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/menus",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"menus"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 | Success Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}/menus",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"menus"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "1704"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"6a8-Emd9zdSQN1l7IsQ3i3f6naUKFks\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 20 Jan 2025 08:07:21 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"message\": \"Successfully fetched records\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"Nasi Goreng\",\n            \"description\": \"Nasi goreng biasa dengan toping telur dan sayur\",\n            \"price\": \"39000.00\",\n            \"createdAt\": \"2025-01-20T03:07:27.000Z\",\n            \"updatedAt\": \"2025-01-20T03:07:27.000Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"id\": 2,\n            \"name\": \"Mie Goreng\",\n            \"description\": \"Mie goreng biasa dengan toping telur dan sayur\",\n            \"price\": \"40000.00\",\n            \"createdAt\": \"2025-01-20T03:07:27.000Z\",\n            \"updatedAt\": \"2025-01-20T03:07:27.000Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"id\": 3,\n            \"name\": \"Rice Bowl Chicken\",\n            \"description\": \"Nasi dengan ayam popcorn dengan telur ceplok dan salad\",\n            \"price\": \"32000.00\",\n            \"createdAt\": \"2025-01-20T03:07:27.000Z\",\n            \"updatedAt\": \"2025-01-20T03:07:27.000Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"id\": 4,\n            \"name\": \"Rice Bowl Slice Beef\",\n            \"description\": \"Nasi dengan slice beef teriyaki dengan telur ceplok dan salad\",\n            \"price\": \"38000.00\",\n            \"createdAt\": \"2025-01-20T03:07:27.000Z\",\n            \"updatedAt\": \"2025-01-20T03:07:27.000Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"id\": 5,\n            \"name\": \"Americano\",\n            \"description\": \"Espresso dengan tambahan air\",\n            \"price\": \"20000.00\",\n            \"createdAt\": \"2025-01-20T03:07:27.000Z\",\n            \"updatedAt\": \"2025-01-20T03:07:27.000Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"id\": 6,\n            \"name\": \"Milk Tea\",\n            \"description\": \"Teh dengan tambahan susu dan toping boba\",\n            \"price\": \"29000.00\",\n            \"createdAt\": \"2025-01-20T03:07:27.000Z\",\n            \"updatedAt\": \"2025-01-20T03:07:27.000Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"id\": 7,\n            \"name\": \"Matcha Latte\",\n            \"description\": \"Teh hijau/matcha dengan tambahan susu\",\n            \"price\": \"29000.00\",\n            \"createdAt\": \"2025-01-20T03:07:27.000Z\",\n            \"updatedAt\": \"2025-01-20T03:07:27.000Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"id\": 8,\n            \"name\": \"Mineral Water\",\n            \"description\": \"Air mineral kemasan 600 ml\",\n            \"price\": \"8000.00\",\n            \"createdAt\": \"2025-01-20T03:07:27.000Z\",\n            \"updatedAt\": \"2025-01-20T03:07:27.000Z\",\n            \"deletedAt\": null\n        }\n    ]\n}"
+								}
+							]
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{customer_token}}",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Orders",
+					"item": [
+						{
+							"name": "Upsert Order",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{customer_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"menu_id\": 2,\r\n  \"quantity\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/orders/item",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"orders",
+										"item"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 | Success Response",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"menu_id\": 1,\r\n  \"quantity\": 2\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/orders/item",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"orders",
+												"item"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "69"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"45-tUJH3xJyfQTz74ReVUXDQhqcuZM\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 20 Jan 2025 07:51:31 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"success\": true,\n  \"message\": \"Successfully upserted record\",\n  \"data\": null\n}"
+								}
+							]
+						},
+						{
+							"name": "Delete Order Item",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{customer_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/orders/item?menu_id=7",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"orders",
+										"item"
+									],
+									"query": [
+										{
+											"key": "menu_id",
+											"value": "7"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 | Success Response",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}/orders/item?menu_id=7",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"orders",
+												"item"
+											],
+											"query": [
+												{
+													"key": "menu_id",
+													"value": "7"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "68"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"44-NRQ4Bt4vi3yWuAKDLMwWgNMoswg\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 20 Jan 2025 07:53:51 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"message\": \"Successfully deleted record\",\n    \"data\": null\n}"
+								}
+							]
+						},
+						{
+							"name": "Get Histories",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{customer_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/orders/histories",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"orders",
+										"histories"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 | Success Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}/orders/histories",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"orders",
+												"histories"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "299"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"12b-AerVIz3QTyJhnh2m/gllxWuWzmc\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 20 Jan 2025 07:55:01 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"message\": \"Successfully fetched records\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"user_id\": 2,\n            \"order_amount\": \"154000.00\",\n            \"promotion_id\": null,\n            \"promotion_amount\": \"0.00\",\n            \"total_amount\": \"154000.00\",\n            \"status\": \"draft\",\n            \"createdAt\": \"2025-01-20T07:51:31.000Z\",\n            \"updatedAt\": \"2025-01-20T07:53:51.000Z\",\n            \"deletedAt\": null\n        }\n    ]\n}"
+								}
+							]
+						},
+						{
+							"name": "Get History Draft",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{customer_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/orders/draft",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"orders",
+										"draft"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 | Success Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}/orders/draft",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"orders",
+												"draft"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "572"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"23c-l3wo6dtkU+3dUPLbdXrEyJpdqE8\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 20 Jan 2025 07:55:31 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"success\": true,\n  \"message\": \"Successfully fetched record\",\n  \"data\": {\n    \"id\": 1,\n    \"user_id\": 2,\n    \"order_amount\": \"154000.00\",\n    \"promotion_id\": null,\n    \"promotion_amount\": \"0.00\",\n    \"total_amount\": \"154000.00\",\n    \"status\": \"draft\",\n    \"createdAt\": \"2025-01-20T07:51:31.000Z\",\n    \"updatedAt\": \"2025-01-20T07:53:51.000Z\",\n    \"deletedAt\": null,\n    \"OrderItems\": [\n      {\n        \"order_id\": 1,\n        \"menu_id\": 1,\n        \"quantity\": 2,\n        \"total_amount\": \"78000.00\",\n        \"Menu\": {\n          \"id\": 1,\n          \"name\": \"Nasi Goreng\",\n          \"description\": \"Nasi goreng biasa dengan toping telur dan sayur\",\n          \"price\": \"39000.00\",\n          \"createdAt\": \"2025-01-20T03:07:27.000Z\",\n          \"updatedAt\": \"2025-01-20T03:07:27.000Z\",\n          \"deletedAt\": null\n        }\n      },\n      {\n        \"order_id\": 1,\n        \"menu_id\": 2,\n        \"quantity\": 1,\n        \"total_amount\": \"78000.00\",\n        \"Menu\": {\n          \"id\": 2,\n          \"name\": \"Mie Goreng\",\n          \"description\": \"Mie goreng biasa dengan toping telur dan sayur\",\n          \"price\": \"40000.00\",\n          \"createdAt\": \"2025-01-20T03:07:27.000Z\",\n          \"updatedAt\": \"2025-01-20T03:07:27.000Z\",\n          \"deletedAt\": null\n        }\n      },\n      {\n        \"order_id\": 1,\n        \"menu_id\": 5,\n        \"quantity\": 1,\n        \"total_amount\": \"78000.00\",\n        \"Menu\": {\n          \"id\": 5,\n          \"name\": \"Americano\",\n          \"description\": \"Espresso dengan tambahan air\",\n          \"price\": \"20000.00\",\n          \"createdAt\": \"2025-01-20T03:07:27.000Z\",\n          \"updatedAt\": \"2025-01-20T03:07:27.000Z\",\n          \"deletedAt\": null\n        }\n      },\n      {\n        \"order_id\": 1,\n        \"menu_id\": 1,\n        \"quantity\": 2,\n        \"total_amount\": \"78000.00\",\n        \"Menu\": {\n          \"id\": 8,\n          \"name\": \"Mineral Water\",\n          \"description\": \"Air mineral kemasan 600 ml\",\n          \"price\": \"8000.00\",\n          \"createdAt\": \"2025-01-20T03:07:27.000Z\",\n          \"updatedAt\": \"2025-01-20T03:07:27.000Z\",\n          \"deletedAt\": null\n        }\n      }\n    ]\n  }\n}"
+								}
+							]
+						},
+						{
+							"name": "Submit Draft",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{customer_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/orders/draft/submission",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"orders",
+										"draft",
+										"submission"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 | Success Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}/orders/draft/submission",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"orders",
+												"draft",
+												"submission"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "70"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"46-0fLTqCbxBkKjqVO2DlwObIlu3Wg\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 20 Jan 2025 08:10:23 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"success\": true,\n  \"message\": \"Successfully submitted record\",\n  \"data\": null\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Promotion",
+					"item": [
+						{
+							"name": "Check Eligible",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{customer_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/promotions/eligible?order_by=start_date",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"promotions",
+										"eligible"
+									],
+									"query": [
+										{
+											"key": "order_by",
+											"value": "start_date"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 | Success Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}/promotions/eligible?order_by=start_date",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"promotions",
+												"eligible"
+											],
+											"query": [
+												{
+													"key": "order_by",
+													"value": "start_date"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "1512"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"5e8-vNoZILrtJfbT2Lw5TY+wpQR47aM\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 20 Jan 2025 06:39:28 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"success\": true,\n  \"message\": \"Successfully fetched records\",\n  \"data\": [\n    {\n      \"id\": 2,\n      \"name\": \"New Member Only\",\n      \"code\": \"NMO00000000\",\n      \"description\": \"Diskon hanya untuk pengguna baru\",\n      \"type\": \"percentage\",\n      \"target_user\": \"new\",\n      \"discount_amount\": \"40.00\",\n      \"max_discount_amount\": \"40000.00\",\n      \"min_order_amount\": \"80000.00\",\n      \"start_date\": \"1900-01-01\",\n      \"end_date\": \"9999-12-31\",\n      \"max_redemptions\": 999999,\n      \"max_redemptions_per_user\": 1,\n      \"createdAt\": \"2025-01-20T04:04:59.000Z\",\n      \"updatedAt\": \"2025-01-20T04:04:59.000Z\",\n      \"deletedAt\": null,\n      \"PromotionCities\": []\n    },\n    {\n      \"id\": 4,\n      \"name\": \"Diskon di kota Kamu\",\n      \"code\": \"SCD20250101\",\n      \"description\": \"Diskon khusus hanya di kota kamu\",\n      \"type\": \"fixed_cut\",\n      \"target_user\": \"specific_city\",\n      \"discount_amount\": \"5000.00\",\n      \"max_discount_amount\": \"5000.00\",\n      \"min_order_amount\": \"50000.00\",\n      \"start_date\": \"2025-01-01\",\n      \"end_date\": \"2025-02-28\",\n      \"max_redemptions\": 50,\n      \"max_redemptions_per_user\": 2,\n      \"createdAt\": \"2025-01-20T04:04:59.000Z\",\n      \"updatedAt\": \"2025-01-20T04:04:59.000Z\",\n      \"deletedAt\": null,\n      \"PromotionCities\": [\n        {\n          \"promotion_id\": 4,\n          \"city_id\": 1,\n          \"City\": {\n            \"id\": 1,\n            \"name\": \"Kota Jakarta\"\n          }\n        },\n        {\n          \"promotion_id\": 4,\n          \"city_id\": 3,\n          \"City\": {\n            \"id\": 3,\n            \"name\": \"Kota Bandung\"\n          }\n        },\n        {\n          \"promotion_id\": 4,\n          \"city_id\": 10,\n          \"City\": {\n            \"id\": 10,\n            \"name\": \"Kota Bogor\"\n          }\n        }\n      ]\n    }\n  ]\n}"
+								}
+							]
+						},
+						{
+							"name": "Apply Promotion",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{customer_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/promotions/redemption?code=NMO00000000",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"promotions",
+										"redemption"
+									],
+									"query": [
+										{
+											"key": "code",
+											"value": "NMO00000000"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "404 | RECORD NOT FOUND!",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}/promotions/redemption?code=NMO00000000",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"promotions",
+												"redemption"
+											],
+											"query": [
+												{
+													"key": "code",
+													"value": "NMO00000000"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "59"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"3b-KnTiuScdR632RbRjO5WFyB4GCsM\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 20 Jan 2025 07:50:04 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"success\": false,\n  \"message\": \"RECORD NOT FOUND!\",\n  \"data\": null\n}"
+								}
+							]
+						},
+						{
+							"name": "Revoke Promotion",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{customer_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/promotions/redemption",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"promotions",
+										"redemption"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Auth",
+					"item": [
+						{
+							"name": "Register",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"Admin\",\r\n  \"email\": \"admin@mail.com\",\r\n  \"password\": \"admin123\",\r\n  \"address\": \"Some long address detail\",\r\n  \"role\": \"admin\",\r\n  \"city_id\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/users/register",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users",
+										"register"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 | Success Response",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"name\": \"Admin\",\r\n  \"email\": \"admin@mail.com\",\r\n  \"password\": \"admin123\",\r\n  \"address\": \"Some long address detail\",\r\n  \"role\": \"admin\",\r\n  \"city_id\": 1\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/users/register",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"users",
+												"register"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"success\": true,\n  \"message\": \"Successfully registered\",\n  \"data\": null\n}"
+								},
+								{
+									"name": "400 | Invalid Payload Response Copy",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"name\": \"Admin\",\r\n  \"email\": \"admin@mail.com\",\r\n  \"password\": \"admin12\",\r\n  \"address\": \"Some long address detail\",\r\n  \"role\": \"admin\",\r\n  \"city_id\": 1\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/users/register",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"users",
+												"register"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"success\": true,\n  \"message\": \"Successfully registered\",\n  \"data\": null\n}"
+								}
+							]
+						},
+						{
+							"name": "Login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseBody = pm.response.json();\r",
+											"pm.environment.set(\"admin_token\", responseBody.data);\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"email\": \"admin@mail.com\",\r\n  \"password\": \"admin123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/users/login",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users",
+										"login"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 | Success Response",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"email\": \"admin@mail.com\",\r\n  \"password\": \"Admin123\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/users/login",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"users",
+												"login"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "218"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"da-OO05TjSkDROfeetqR2uQFSrXzzo\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 20 Jan 2025 03:11:32 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"success\": true,\n  \"message\": \"Successfully logged in\",\n  \"data\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzM3MzQyNjkyLCJleHAiOjE3Mzc0MjkwOTJ9.bYIHYCGgYImagwc1C2-lhPnehHm_SiQYDtGnq1ezxjE\"\n}"
+								},
+								{
+									"name": "400 | Invalid Credential",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"email\": \"admin@mail.com\",\r\n  \"password\": \"admin123\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/users/login",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"users",
+												"login"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "62"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"3e-fYKEWq4/0Rlu2kmJmgRoZPQCsRk\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 20 Jan 2025 03:13:46 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": false,\n    \"message\": \"INVALID CREDENTIALS!\",\n    \"data\": null\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Menus",
+					"item": [
+						{
+							"name": "Create Menu",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"Milk Tea\",\r\n  \"description\": \"Teh dengan dengan tambahan susu\",\r\n  \"price\": 28000\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/admin/menus",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin",
+										"menus"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Menu",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"Milk Tea\",\r\n  \"description\": \"Teh dengan dengan tambahan susu\",\r\n  \"price\": 27500\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/admin/menus/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin",
+										"menus",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Orders",
+					"item": [
+						{
+							"name": "Edit Status Order",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"status\": \"cancelled\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/admin/orders/:id/status",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin",
+										"orders",
+										":id",
+										"status"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2",
+											"description": "Id on table order"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Promotion",
+					"item": [
+						{
+							"name": "Get Promotions",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/admin/promotions?order_by=start_date",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin",
+										"promotions"
+									],
+									"query": [
+										{
+											"key": "order_by",
+											"value": "start_date"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 | Success Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}/admin/promotions?order_by=start_date",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"admin",
+												"promotions"
+											],
+											"query": [
+												{
+													"key": "order_by",
+													"value": "start_date"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "1975"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"7b7-fD3m4gmdjt1bMgPm8plkPXELG4Y\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 20 Jan 2025 05:52:01 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"success\": true,\n  \"message\": \"Successfully fetched records\",\n  \"data\": [\n    {\n      \"id\": 2,\n      \"name\": \"New Member Only\",\n      \"code\": \"NMO00000000\",\n      \"description\": \"Diskon hanya untuk pengguna baru\",\n      \"type\": \"percentage\",\n      \"target_user\": \"new\",\n      \"discount_amount\": \"40.00\",\n      \"max_discount_amount\": \"40000.00\",\n      \"min_order_amount\": \"80000.00\",\n      \"start_date\": \"1900-01-01\",\n      \"end_date\": \"9999-12-31\",\n      \"max_redemptions\": 999999,\n      \"max_redemptions_per_user\": 1,\n      \"createdAt\": \"2025-01-20T04:04:59.000Z\",\n      \"updatedAt\": \"2025-01-20T04:04:59.000Z\",\n      \"deletedAt\": null,\n      \"PromotionCities\": []\n    },\n    {\n      \"id\": 1,\n      \"name\": \"Diskon Awal Tahun\",\n      \"code\": \"DAT20250101\",\n      \"description\": \"Diskon awal tahun untuk semua pengguna\",\n      \"type\": \"fixed_cut\",\n      \"target_user\": \"all\",\n      \"discount_amount\": \"10000.00\",\n      \"max_discount_amount\": \"10000.00\",\n      \"min_order_amount\": \"50000.00\",\n      \"start_date\": \"2024-12-22\",\n      \"end_date\": \"2025-01-12\",\n      \"max_redemptions\": 999999,\n      \"max_redemptions_per_user\": 2,\n      \"createdAt\": \"2025-01-20T04:04:59.000Z\",\n      \"updatedAt\": \"2025-01-20T04:23:53.000Z\",\n      \"deletedAt\": null,\n      \"PromotionCities\": []\n    },\n    {\n      \"id\": 3,\n      \"name\": \"Loyal Customer Discount\",\n      \"code\": \"LCD20250101\",\n      \"description\": \"Diskon khusus untuk pengguna setia\",\n      \"type\": \"percentage\",\n      \"target_user\": \"loyal\",\n      \"discount_amount\": \"45.00\",\n      \"max_discount_amount\": \"80000.00\",\n      \"min_order_amount\": \"100000.00\",\n      \"start_date\": \"2025-01-01\",\n      \"end_date\": \"2025-06-30\",\n      \"max_redemptions\": 100,\n      \"max_redemptions_per_user\": 5,\n      \"createdAt\": \"2025-01-20T04:04:59.000Z\",\n      \"updatedAt\": \"2025-01-20T04:04:59.000Z\",\n      \"deletedAt\": null,\n      \"PromotionCities\": []\n    },\n    {\n      \"id\": 4,\n      \"name\": \"Diskon di kota Kamu\",\n      \"code\": \"SCD20250101\",\n      \"description\": \"Diskon khusus hanya di kota kamu\",\n      \"type\": \"fixed_cut\",\n      \"target_user\": \"specific_city\",\n      \"discount_amount\": \"5000.00\",\n      \"max_discount_amount\": \"5000.00\",\n      \"min_order_amount\": \"50000.00\",\n      \"start_date\": \"2025-01-01\",\n      \"end_date\": \"2025-02-28\",\n      \"max_redemptions\": 50,\n      \"max_redemptions_per_user\": 2,\n      \"createdAt\": \"2025-01-20T04:04:59.000Z\",\n      \"updatedAt\": \"2025-01-20T04:04:59.000Z\",\n      \"deletedAt\": null,\n      \"PromotionCities\": [\n        {\n          \"promotion_id\": 4,\n          \"city_id\": 1,\n          \"City\": {\n            \"id\": 1,\n            \"name\": \"Kota Jakarta\"\n          }\n        },\n        {\n          \"promotion_id\": 4,\n          \"city_id\": 3,\n          \"City\": {\n            \"id\": 3,\n            \"name\": \"Kota Bandung\"\n          }\n        },\n        {\n          \"promotion_id\": 4,\n          \"city_id\": 10,\n          \"City\": {\n            \"id\": 10,\n            \"name\": \"Kota Bogor\"\n          }\n        }\n      ]\n    }\n  ]\n}"
+								}
+							]
+						},
+						{
+							"name": "Create Promotions",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"Diskon 15%\",\r\n  \"code\": \"AUD20250115\",\r\n  \"description\": \"Diskon 10% untuk semua pelanggan\",\r\n  \"type\": \"percentage\",\r\n  \"target_user\": \"all\",\r\n  \"discount_amount\": 10.00,\r\n  \"max_discount_amount\": 25000.00,\r\n  \"min_order_amount\": 65000.00,\r\n  \"start_date\": \"2025-01-20\",\r\n  \"end_date\": \"2025-01-27\",\r\n  \"max_redemptions\": 30,\r\n  \"max_redemptions_per_user\": 3\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/admin/promotions",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin",
+										"promotions"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 | Non Specific City Success Response",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"name\": \"Promo Zona 1\",\r\n  \"code\": \"AUD20250115\",\r\n  \"description\": \"Promo untuk daerah zona 1\",\r\n  \"type\": \"percentage\",\r\n  \"target_user\": \"all\",\r\n  \"discount_amount\": 15.00,\r\n  \"max_discount_amount\": 25000.00,\r\n  \"min_order_amount\": 65000.00,\r\n  \"start_date\": \"2025-01-20\",\r\n  \"end_date\": \"2025-01-27\",\r\n  \"max_redemptions\": 50,\r\n  \"max_redemptions_per_user\": 3,\r\n  \"promotion_cities\": [\r\n    { \"city_id\": 4 },\r\n    { \"city_id\": 7 },\r\n    { \"city_id\": 8 },\r\n    { \"city_id\": 9 }\r\n  ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/admin/promotions",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"admin",
+												"promotions"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "486"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"1e6-7Hbb81Kb5Cq0jXO2GcvdFf8dhgo\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 20 Jan 2025 07:16:44 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"success\": true,\n  \"message\": \"Successfully created new record\",\n  \"data\": {\n    \"id\": 6,\n    \"name\": \"Diskon 15%\",\n    \"code\": \"AUD20250115\",\n    \"description\": \"Diskon 10% untuk semua pelanggan\",\n    \"type\": \"percentage\",\n    \"target_user\": \"all\",\n    \"discount_amount\": 10,\n    \"max_discount_amount\": 25000,\n    \"min_order_amount\": 65000,\n    \"start_date\": \"2025-01-20T00:00:00.000Z\",\n    \"end_date\": \"2025-01-27T00:00:00.000Z\",\n    \"max_redemptions\": 30,\n    \"max_redemptions_per_user\": 3,\n    \"updatedAt\": \"2025-01-20T07:16:44.621Z\",\n    \"createdAt\": \"2025-01-20T07:16:44.621Z\"\n  }\n}"
+								}
+							]
+						},
+						{
+							"name": "Create Promotions Specific City",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"Promo Zona 1 15%\",\r\n  \"code\": \"AUD20250215\",\r\n  \"description\": \"Promo untuk daerah zona 1\",\r\n  \"type\": \"percentage\",\r\n  \"target_user\": \"all\",\r\n  \"discount_amount\": 15.00,\r\n  \"max_discount_amount\": 25000.00,\r\n  \"min_order_amount\": 65000.00,\r\n  \"start_date\": \"2025-01-20\",\r\n  \"end_date\": \"2025-01-27\",\r\n  \"max_redemptions\": 50,\r\n  \"max_redemptions_per_user\": 3,\r\n  \"promotion_cities\": [\r\n    { \"city_id\": 4 },\r\n    { \"city_id\": 7 },\r\n    { \"city_id\": 8 },\r\n    { \"city_id\": 9 }\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/admin/promotions",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin",
+										"promotions"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 | Specific City Success Response",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"name\": \"Promo Zona 1 15%\",\r\n  \"code\": \"AUD20250215\",\r\n  \"description\": \"Promo untuk daerah zona 1\",\r\n  \"type\": \"percentage\",\r\n  \"target_user\": \"all\",\r\n  \"discount_amount\": 15.00,\r\n  \"max_discount_amount\": 25000.00,\r\n  \"min_order_amount\": 65000.00,\r\n  \"start_date\": \"2025-01-20\",\r\n  \"end_date\": \"2025-01-27\",\r\n  \"max_redemptions\": 50,\r\n  \"max_redemptions_per_user\": 3,\r\n  \"promotion_cities\": [\r\n    { \"city_id\": 4 },\r\n    { \"city_id\": 7 },\r\n    { \"city_id\": 8 },\r\n    { \"city_id\": 9 }\r\n  ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/admin/promotions",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"admin",
+												"promotions"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "486"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"1e6-XU7wF/hCZmm/98AoZ4RzPEMw1hQ\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 20 Jan 2025 07:27:14 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"success\": true,\n  \"message\": \"Successfully created new record\",\n  \"data\": {\n    \"id\": 10,\n    \"name\": \"Promo Zona 1 15%\",\n    \"code\": \"AUD20250215\",\n    \"description\": \"Promo untuk daerah zona 1\",\n    \"type\": \"percentage\",\n    \"target_user\": \"all\",\n    \"discount_amount\": 15,\n    \"max_discount_amount\": 25000,\n    \"min_order_amount\": 65000,\n    \"start_date\": \"2025-01-20T00:00:00.000Z\",\n    \"end_date\": \"2025-01-27T00:00:00.000Z\",\n    \"max_redemptions\": 50,\n    \"max_redemptions_per_user\": 3,\n    \"updatedAt\": \"2025-01-20T07:27:14.277Z\",\n    \"createdAt\": \"2025-01-20T07:27:14.277Z\"\n  }\n}"
+								},
+								{
+									"name": "409 | CONFLICTING RECORD!",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"name\": \"Promo Zona 1\",\r\n  \"code\": \"AUD20250115\",\r\n  \"description\": \"Promo untuk daerah zona 1\",\r\n  \"type\": \"percentage\",\r\n  \"target_user\": \"all\",\r\n  \"discount_amount\": 15.00,\r\n  \"max_discount_amount\": 25000.00,\r\n  \"min_order_amount\": 65000.00,\r\n  \"start_date\": \"2025-01-20\",\r\n  \"end_date\": \"2025-01-27\",\r\n  \"max_redemptions\": 50,\r\n  \"max_redemptions_per_user\": 3,\r\n  \"promotion_cities\": [\r\n    { \"city_id\": 4 },\r\n    { \"city_id\": 7 },\r\n    { \"city_id\": 8 },\r\n    { \"city_id\": 9 }\r\n  ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/admin/promotions",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"admin",
+												"promotions"
+											]
+										}
+									},
+									"status": "Conflict",
+									"code": 409,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "61"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"3d-zhKxVMPCWoqq8zPB2xuCKBCu4tg\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 20 Jan 2025 07:24:06 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"success\": false,\n  \"message\": \"CONFLICTING RECORD!\",\n  \"data\": null\n}"
+								}
+							]
+						},
+						{
+							"name": "Update Promotion",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"Diskon 10%\",\r\n  \"code\": \"AUD20250110\",\r\n  \"description\": \"Diskon 10% untuk semua pelanggan\",\r\n  \"type\": \"percentage\",\r\n  \"target_user\": \"all\",\r\n  \"discount_amount\": 10.00,\r\n  \"max_discount_amount\": 25000.00,\r\n  \"min_order_amount\": 65000.00,\r\n  \"start_date\": \"2025-01-20\",\r\n  \"end_date\": \"2025-01-27\",\r\n  \"max_redemptions\": 30,\r\n  \"max_redemptions_per_user\": 3\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/admin/promotions/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin",
+										"promotions",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 | Success Response",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"name\": \"Diskon 10%\",\r\n  \"code\": \"AUD20250110\",\r\n  \"description\": \"Diskon 10% untuk semua pelanggan\",\r\n  \"type\": \"percentage\",\r\n  \"target_user\": \"all\",\r\n  \"discount_amount\": 10.00,\r\n  \"max_discount_amount\": 25000.00,\r\n  \"min_order_amount\": 65000.00,\r\n  \"start_date\": \"2025-01-20\",\r\n  \"end_date\": \"2025-01-27\",\r\n  \"max_redemptions\": 30,\r\n  \"max_redemptions_per_user\": 3\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/admin/promotions/:id",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"admin",
+												"promotions",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "6"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "378"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"17a-7Syi7be8AN8orr9eNM6Ok8D7THg\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 20 Jan 2025 07:35:52 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"success\": true,\n  \"message\": \"Successfully updated record\",\n  \"data\": {\n    \"name\": \"Diskon 10%\",\n    \"code\": \"AUD20250110\",\n    \"description\": \"Diskon 10% untuk semua pelanggan\",\n    \"type\": \"percentage\",\n    \"target_user\": \"all\",\n    \"discount_amount\": 10,\n    \"max_discount_amount\": 25000,\n    \"min_order_amount\": 65000,\n    \"start_date\": \"2025-01-20\",\n    \"end_date\": \"2025-01-27\",\n    \"max_redemptions\": 30,\n    \"max_redemptions_per_user\": 3,\n    \"id\": \"6\"\n  }\n}"
+								}
+							]
+						},
+						{
+							"name": "Update Promotion Specific City",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"Promo Zona 1 15%\",\r\n  \"code\": \"AUD20250115\",\r\n  \"description\": \"Promo untuk daerah zona 1\",\r\n  \"type\": \"percentage\",\r\n  \"target_user\": \"all\",\r\n  \"discount_amount\": 15.00,\r\n  \"max_discount_amount\": 25000.00,\r\n  \"min_order_amount\": 65000.00,\r\n  \"start_date\": \"2025-01-20\",\r\n  \"end_date\": \"2025-01-27\",\r\n  \"max_redemptions\": 50,\r\n  \"max_redemptions_per_user\": 3,\r\n  \"promotion_cities\": [\r\n    { \"city_id\": 4 },\r\n    { \"city_id\": 7 },\r\n    { \"city_id\": 8 },\r\n    { \"city_id\": 9 }\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/admin/promotions/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin",
+										"promotions",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 | Success Response Specific City",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"name\": \"Promo Zona 1 15%\",\r\n  \"code\": \"AUD20250115\",\r\n  \"description\": \"Promo untuk daerah zona 1\",\r\n  \"type\": \"percentage\",\r\n  \"target_user\": \"all\",\r\n  \"discount_amount\": 15.00,\r\n  \"max_discount_amount\": 25000.00,\r\n  \"min_order_amount\": 65000.00,\r\n  \"start_date\": \"2025-01-20\",\r\n  \"end_date\": \"2025-01-27\",\r\n  \"max_redemptions\": 50,\r\n  \"max_redemptions_per_user\": 3,\r\n  \"promotion_cities\": [\r\n    { \"city_id\": 4 },\r\n    { \"city_id\": 7 },\r\n    { \"city_id\": 8 },\r\n    { \"city_id\": 9 }\r\n  ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/admin/promotions/:id",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"admin",
+												"promotions",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "10"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "535"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"217-wtaj3QyG2o8KzbFo+r9c/XRZw4Y\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 20 Jan 2025 07:39:12 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"success\": true,\n  \"message\": \"Successfully updated record\",\n  \"data\": {\n    \"name\": \"Promo Zona 1 15%\",\n    \"code\": \"AUD20250115\",\n    \"description\": \"Promo untuk daerah zona 1\",\n    \"type\": \"percentage\",\n    \"target_user\": \"all\",\n    \"discount_amount\": 15,\n    \"max_discount_amount\": 25000,\n    \"min_order_amount\": 65000,\n    \"start_date\": \"2025-01-20\",\n    \"end_date\": \"2025-01-27\",\n    \"max_redemptions\": 50,\n    \"max_redemptions_per_user\": 3,\n    \"id\": \"10\",\n    \"promotion_cities\": [\n      {\n        \"city_id\": 4,\n        \"promotion_id\": \"10\"\n      },\n      {\n        \"city_id\": 7,\n        \"promotion_id\": \"10\"\n      },\n      {\n        \"city_id\": 8,\n        \"promotion_id\": \"10\"\n      },\n      {\n        \"city_id\": 9,\n        \"promotion_id\": \"10\"\n      }\n    ]\n  }\n}"
+								}
+							]
+						},
+						{
+							"name": "Delete Promotion",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/admin/promotions/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin",
+										"promotions",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 | Success Response",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}/admin/promotions/:id",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"admin",
+												"promotions",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "6"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "69"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"45-CcnA0wu12u6sGOCFKyfDPrFIhHM\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 20 Jan 2025 07:43:44 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"success\": true,\n  \"message\": \"Successfully deleting record\",\n  \"data\": null\n}"
+								}
+							]
+						},
+						{
+							"name": "Delete Promotion Specific City",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/admin/promotions/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin",
+										"promotions",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 | Success Response",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}/admin/promotions/:id",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"admin",
+												"promotions",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "10"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "69"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"45-CcnA0wu12u6sGOCFKyfDPrFIhHM\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 20 Jan 2025 07:44:32 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"success\": true,\n  \"message\": \"Successfully deleting record\",\n  \"data\": null\n}"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Other",
+			"item": [
+				{
+					"name": "Cities",
+					"item": [
+						{
+							"name": "Get Cities",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/cities",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"cities"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Get Cities",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}/cities",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"cities"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"message\": \"Successfully fetched cities\",\n    \"data\": [\n        {\n            \"id\": 3,\n            \"name\": \"Kota Bandung\"\n        },\n        {\n            \"id\": 8,\n            \"name\": \"Kota Batam\"\n        },\n        {\n            \"id\": 10,\n            \"name\": \"Kota Bogor\"\n        },\n        {\n            \"id\": 1,\n            \"name\": \"Kota Jakarta\"\n        },\n        {\n            \"id\": 6,\n            \"name\": \"Kota Makassar\"\n        },\n        {\n            \"id\": 4,\n            \"name\": \"Kota Medan\"\n        },\n        {\n            \"id\": 7,\n            \"name\": \"Kota Palembang\"\n        },\n        {\n            \"id\": 9,\n            \"name\": \"Kota Pekanbaru\"\n        },\n        {\n            \"id\": 5,\n            \"name\": \"Kota Semarang\"\n        },\n        {\n            \"id\": 2,\n            \"name\": \"Kota Surabaya\"\n        }\n    ]\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Orders",
+					"item": [
+						{
+							"name": "Tasks Status Order",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{static_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/orders/:id/tasks/status?status=draft",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"orders",
+										":id",
+										"tasks",
+										"status"
+									],
+									"query": [
+										{
+											"key": "status",
+											"value": "draft"
+										}
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2",
+											"description": "Id on table order"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}

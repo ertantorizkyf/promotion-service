@@ -1,0 +1,4 @@
+{
+  "customer": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwicm9sZSI6ImN1c3RvbWVyIiwiaWF0IjoxNzM2Njg2MTI1LCJleHAiOjE3NDUzMjYxMjV9._KXzCaaP9xZH5-4pnRDJghT9xRSfpq1mHaOD7527H3c",
+  "admin": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Niwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzM2Njg2NDY4LCJleHAiOjE3NDUzMjY0Njh9.nDSjEwLEVBArEQ6tNz-7VKUkSVnQt9Q5gyrvvtnonhs"
+}

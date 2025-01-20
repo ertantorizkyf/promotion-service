@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "name": "Fried Rice",
+    "description": "Cooked using homemade seasoning blends",
+    "price": 20000.00,
+    "created_at": "2025-01-01 01:01:00",
+    "updated_at": "2025-01-01 01:01:00",
+    "deleted_at": null
+  },
+  {
+    "id": 2,
+    "name": "Fried Noodles",
+    "description": "Cooked using homemade seasoning blends",
+    "price": 20000.00,
+    "created_at": "2025-01-01 01:01:00",
+    "updated_at": "2025-01-01 01:01:00",
+    "deleted_at": null
+  },
+  {
+    "id": 3,
+    "name": "Mineral Water",
+    "description": null,
+    "price": 20000.00,
+    "created_at": "2025-01-01 01:01:00",
+    "updated_at": "2025-01-01 01:01:00",
+    "deleted_at": null
+  },
+  {
+    "id": 4,
+    "name": "Sweet Iced Tea",
+    "description": null,
+    "price": 20000.00,
+    "created_at": "2025-01-01 01:01:00",
+    "updated_at": "2025-01-01 01:01:00",
+    "deleted_at": null
+  }
+]
